@@ -1,0 +1,24 @@
+req.session.userId = user.userId
+
+{userId: 1} -> send that to redis
+
+1
+sess:qwiwejalfkjsdfl -> { userId: 1}
+
+2
+express-session will set a cookie on my browser qqliwjkadfjeijadfkd (a signed version of key)
+
+3
+when user makes a request
+qqliwjkadfjeijadfkd -> sent to the server
+
+
+4
+decrypt the cookie
+qqliwjkadfjeijadfkd -> sess:qwiwejalfkjsdfl
+
+5
+make a request to redis (which finds usdr id)
+sess:qwiwejalfkjsdfl -> { userId: 1 }
+
+req.session = { userId: 1} 
