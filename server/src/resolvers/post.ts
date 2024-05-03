@@ -5,8 +5,16 @@ import { MyContext } from "src/types";
 @Resolver()
 export class PostResolver {
   @Query(() => [Post])
-  posts(@Ctx() { em }: MyContext): Promise<Post[]> {
-    return em.find(Post, {});
+  async posts(@Ctx() { em }: MyContext): Promise<Post[]> {
+    console.log("hello");
+    console.log("hello");
+    console.log("hello");
+    const result = em.find(Post, {});
+    console.log(result);
+    console.log("hello");
+    console.log("hello");
+    console.log("hello");
+    return result;
   }
 
   @Query(() => Post, { nullable: true })
