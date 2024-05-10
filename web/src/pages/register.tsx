@@ -1,6 +1,6 @@
 import React from "react";
 import { Formik, Form } from "formik";
-import { Box, Button } from "@chakra-ui/react";
+import { Box, Button } from "@chakra-ui/core";
 import { Wrapper } from "../components/Wrapper";
 import { InputField } from "../components/InputField";
 import { useRegisterMutation } from "../generated/graphql";
@@ -8,6 +8,7 @@ import { toErrorMap } from "../utils/toErrorMap";
 import { useRouter } from "next/router";
 import { withUrqlClient } from "next-urql";
 import { createUrqlClient } from "../utils/createUrqlClient";
+
 interface registerProps {}
 
 const Register: React.FC<registerProps> = ({}) => {
@@ -16,10 +17,9 @@ const Register: React.FC<registerProps> = ({}) => {
   return (
     <Wrapper variant="small">
       <Formik
-        initialValues={{ username: "", password: "" }}
+        initialValues={{ email: "", username: "", password: "" }}
         onSubmit={async (values, { setErrors }) => {
-          const response = await register(values);
-
+          const response = await register({options: values});
           if (response.data?.register.errors) {
             setErrors(toErrorMap(response.data.register.errors));
           } else if (response.data?.register.user) {
@@ -37,6 +37,13 @@ const Register: React.FC<registerProps> = ({}) => {
             />
             <Box mt={4}>
               <InputField
+                name="email"
+                placeholder="email"
+                label="Email"
+              />
+            </Box>
+            <Box mt={4}>
+              <InputField
                 name="password"
                 placeholder="password"
                 label="Password"
@@ -44,10 +51,10 @@ const Register: React.FC<registerProps> = ({}) => {
               />
             </Box>
             <Button
-              type="submit"
-              colorScheme="teal"
               mt={4}
+              type="submit"
               isLoading={isSubmitting}
+              variantColor="teal"
             >
               register
             </Button>

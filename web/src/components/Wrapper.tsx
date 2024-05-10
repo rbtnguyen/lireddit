@@ -1,9 +1,9 @@
-import { Box } from "@chakra-ui/react";
-import React from "react";
+import React, { ReactElement } from "react";
+import { Box } from "@chakra-ui/core";
 
 interface WrapperProps {
+  children?: ReactElement
   variant?: "small" | "regular";
-  children?: React.ReactNode;
 }
 
 export const Wrapper: React.FC<WrapperProps> = ({
