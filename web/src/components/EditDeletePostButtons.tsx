@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Icon, IconButton, Link } from "@chakra-ui/core";
+import { Box, IconButton, Link } from "@chakra-ui/core";
 import NextLink from "next/link";
 import { useDeletePostMutation, useMeQuery } from "../generated/graphql";
 
